@@ -1,0 +1,424 @@
+body {
+  background:#0f0f0f;
+  font-family: Arial, sans-serif;
+  color:#fff;
+}
+
+.menu-section {
+  max-width:1200px;
+  margin:auto;
+  padding:20px;
+  display: none;
+  position: relative;
+  min-height: 600px;
+}
+
+h1 {
+  text-align:center;
+  color:#f5b301;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:20px;
+}
+
+.card {
+  background:#1c1c1c;
+  border-radius:10px;
+  overflow:hidden;
+  text-align:center;
+  padding-bottom:10px;
+}
+
+.card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+}
+
+.card h3 {
+  margin:10px 0 0;
+}
+
+.card p {
+  font-size:14px;
+  opacity:.7;
+}
+
+.card span {
+  display:block;
+  margin-top:5px;
+  color:#f5b301;
+  font-weight:bold;
+}
+
+.nav-btn {
+  position: relative;   /* 🔥 absolute etkisini kırar */
+  left: 50%;
+  transform: translateX(-50%);
+
+  margin: 30px 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 14px 34px;
+  font-size: 16px;
+  font-weight: 600;
+
+  background: #f5b301;
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+
+.menu-section.active {
+  display: block;
+}
+
+/* =========================
+   MOBİL DÜZEN (RESPONSIVE)
+========================= */
+@media (max-width: 768px) {
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    padding: 10px;
+  }
+
+
+}
+
+/* Çok küçük ekranlar */
+@media (max-width: 420px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* =========================
+   SEKME BUTONLARI (TABS)
+========================= */
+.tabs {
+  display: flex;
+  gap: 12px;
+
+  padding: 0 16px;
+  margin: 20px 0 30px;   /* ❗ auto KALDIRILDI */
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  white-space: nowrap;
+
+  touch-action: pan-x;
+  overscroll-behavior-x: contain;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+
+  justify-content: flex-start; /* 🔥 KRİTİK */
+}
+
+.tab:first-child {
+  margin-left: 0;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+.tab {
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  padding: 10px 26px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  background: #2a2a2a;
+  color: #fff;
+  cursor: pointer;
+  transition: all .25s ease;
+}
+
+.tab.active {
+  background: #f5b301;
+  color: #000;
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+
+/* =========================
+   MOBİL & ANİMASYON DÜZENİ
+========================= */
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sayfa geçişleri */
+.page {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: all .4s ease;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.page.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+/* =========================
+   MOBİL QR MENÜ OPTİMİZASYON
+========================= */
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .card img {
+    height: 150px;
+  }
+
+  .card h3 {
+    font-size: 16px;
+  }
+
+  .card p {
+    font-size: 13px;
+  }
+
+  .card span {
+    font-size: 15px;
+  }
+
+  .nav-btn {
+    font-size: 16px;
+    padding: 14px 34px;
+  }
+}
+
+/* Tek kolon – kiosk hissi */
+@media (max-width: 420px) {
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card h3 {
+    font-size: 18px;
+  }
+
+  .card span {
+    font-size: 17px;
+  }
+}
+
+.card {
+  transition: transform .2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card:active {
+  transform: scale(0.97);
+}
+
+.card.pressed {
+  transform: scale(0.97);
+}
+
+.arrow {
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1;
+}
+.nav-btn:active {
+  transform: translateX(-50%) scale(0.95);
+}
+.nav-btn.hidden {
+  display: none;
+}
+
+.search-box {
+  max-width: 400px;
+  margin: 0 auto 20px;
+  padding: 0 16px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px 20px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.sub-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 10px 0 20px;
+  overflow-x: auto;
+}
+
+.sub-tab {
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  background: #2a2a2a;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sub-tab.active {
+  background: #f5b301;
+  color: #000;
+  font-weight: bold;
+}
+
+/*Rakı*/
+.rakı-header,
+.rakı-row {
+  display: grid;
+  grid-template-columns: 2fr repeat(4, 1fr);
+  gap: 6px;
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+.rakı-header {
+  font-weight: bold;
+  color: #f5b301;
+  border-bottom: 1px solid #333;
+}
+
+.rakı-row {
+  border-bottom: 1px solid #222;
+}
+
+.rakı-row span {
+  text-align: center;
+}
+
+.rakı-row span:first-child {
+  text-align: left;
+}
+
+/* İçecekler alt sekmeleri gizleme */
+.drink-section {
+  display: none;
+}
+
+.drink-section.active {
+  display: block;
+}
+
+/* 🔍 ARAMA MODU */
+body.searching .page {
+  position: relative !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+body.searching .nav-btn {
+  display: none !important;
+}
+
+
+ /* 🔍 ARAMA MODUNDA SAYFALAMA KAPAT */
+body.searching .page {
+  position: static !important;
+  inset: auto !important;
+  opacity: 1 !important;
+  transform: none !important;
+  pointer-events: auto !important;
+  width: 100% !important;
+}
+
+/* grid genişliği sabitle */
+body.searching .grid {
+  width: 100%;
+}
+
+/* =========================
+   LOGO ALANI
+========================= */
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 10px;
+}
+
+.logo-wrapper img {
+  max-width: 220px;
+  width: 70%;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.6));
+}
+
+/* Mobilde biraz daha büyük */
+@media (max-width: 768px) {
+  .logo-wrapper img {
+    max-width: 260px;
+  }
+}
+
+.search-box {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-box input {
+  padding-left: 46px; /* ikon için boşluk */
+}
